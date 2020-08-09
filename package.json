@@ -13,6 +13,7 @@
   ],
   "author": "candyjs",
   "license": "MIT",
+  "homepage": "https://github.com/douyu-beijing/candy-template-hbs",
   "dependencies": {
     "handlebars": "^4.7.6"
   },
