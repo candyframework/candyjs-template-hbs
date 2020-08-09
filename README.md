@@ -27,7 +27,7 @@ new CandyJs(new App({
     'debug': true,
     'appPath': __dirname + '/app',
     // 指定使用的模板引擎
-    'defaultView': 'n_m/candyjs-template-hbs/index'
+    'defaultView': 'n_m/@candyjs/template-hbs/index'
 
 })).listen(2333, function(){
     console.log('listen on 2333');
