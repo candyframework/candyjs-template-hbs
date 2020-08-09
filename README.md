@@ -104,13 +104,13 @@ module.exports = class IndexController extends Controller {
 
 // app/views/index/index.html
 // 可见现在的模板文件已经没有了 html 文档结构
-// 取而代之的知识一个片段 这个片段将会替换布局文件的 contentHtml
+// 取而代之的是一个文档片段 这个片段将会替换布局文件的 contentHtml
 <div>{{ age }}</div>
 ```
 
 + 须知
 
-由上面代码可知，布局文件默认放到了 app/views 目录中，并起名 layout.html ，
+由上面代码可见，布局文件默认放到了 app/views 目录中，并起名 layout.html ，
 这只是系统的默认配置，可以通过修改类的 layout 属性来改变布局文件的名称及位置
 
 ```
