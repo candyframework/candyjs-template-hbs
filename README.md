@@ -7,7 +7,7 @@
 使用前需要先安装本插件
 
 ```
-npm install
+npm install @candyjs/template-hbs
 ```
 
 + 直接使用

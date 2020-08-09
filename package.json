@@ -1,5 +1,5 @@
 {
-  "name": "@candy/template-hbs",
+  "name": "@candyjs/template-hbs",
   "version": "0.1.0",
   "description": "hbs template",
   "main": "index.js",
