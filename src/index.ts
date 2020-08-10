@@ -55,6 +55,7 @@ export default class Index extends View {
 
             compiled = handlebars.compile(layoutData);
             this.contentHtml = compiled({
+                $parameters: parameters,
                 title: this.title,
                 description: this.description,
                 contentHtml: this.contentHtml

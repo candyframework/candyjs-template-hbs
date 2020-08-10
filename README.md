@@ -129,3 +129,10 @@ module.exports = class IndexController extends Controller {
     }
 }
 ```
+
+
+### CHANGELOG
+
++ 2020-08-10
+
+0.1.1 渲染模板添加 `$parameters` 参数

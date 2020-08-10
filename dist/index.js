@@ -54,6 +54,7 @@ class Index extends View {
                 let layoutData = yield fs.promises.readFile(layoutFile, { encoding: Candy.app.encoding });
                 compiled = handlebars.compile(layoutData);
                 this.contentHtml = compiled({
+                    $parameters: parameters,
                     title: this.title,
                     description: this.description,
                     contentHtml: this.contentHtml

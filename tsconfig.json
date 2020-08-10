@@ -6,7 +6,9 @@
         "moduleResolution": "node",
         "sourceMap": false,
         "outDir": "./dist",
-        "baseUrl": "."
+        "baseUrl": ".",
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true
     },
     "include": [
         "src/**/*"
