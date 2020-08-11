@@ -18,7 +18,7 @@ export default class Index extends View {
     /**
      * @property {String} layout 布局文件路径
      */
-    public layout = '@app/views/layout';
+    public layout: string = '@app/views/layout';
 
     /**
      * @property {String} title 页面标题
@@ -33,7 +33,9 @@ export default class Index extends View {
     /**
      * @property {String} contentHtml 内容 html
      */
-    public contentHtml = '';
+    public contentHtml: string = '';
+
+    public handlebars: typeof Handlebars = Handlebars.create();
 
     constructor(context: any) {
         super(context);
@@ -43,9 +45,8 @@ export default class Index extends View {
      * 渲染文件
      */
     async renderFile(file: string, parameters: any) {
-        let handlebars = Handlebars.create();
         let viewData = await fs.promises.readFile(file, {encoding: Candy.app.encoding});
-        let compiled = handlebars.compile(viewData);
+        let compiled = this.handlebars.compile(viewData);
 
         this.contentHtml = compiled(parameters);
 
@@ -53,7 +54,7 @@ export default class Index extends View {
             let layoutFile = Candy.getPathAlias(this.layout + this.defaultExtension);
             let layoutData = await fs.promises.readFile(layoutFile, {encoding: Candy.app.encoding});
 
-            compiled = handlebars.compile(layoutData);
+            compiled = this.handlebars.compile(layoutData);
             this.contentHtml = compiled({
                 $parameters: parameters,
                 title: this.title,
