@@ -130,7 +130,7 @@ module.exports = class IndexController extends Controller {
 }
 ```
 
-+ 向 <head> 部分添加资源
++ 向 head 部分添加资源
 
 有时候项目需要引入一个外部 js 并且这个 js 需要在页面加载时候就引入，这时候可以使用该 API 实现
 
