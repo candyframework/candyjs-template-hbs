@@ -130,9 +130,39 @@ module.exports = class IndexController extends Controller {
 }
 ```
 
++ 向 <head> 部分添加资源
+
+有时候项目需要引入一个外部 js 并且这个 js 需要在页面加载时候就引入，这时候可以使用该 API 实现
+
+下面在模板文件中调用 `addHeadAsset()` 函数，实现添加头部资源。布局文件中调用 `getHeadAssets()` 实现了输出资源到页面
+
+```
+// 模板片段文件
+{{ $this.addHeadAsset '<link href="aaa">' }}
+
+<div>other html content</div>
+```
+
+```
+// 布局文件
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {{{ $this.getHeadAssets }}}
+</head>
+<body>
+    content
+</body>
+</html>
+```
 
 ### CHANGELOG
 
++ 2020-09-15
+
+    * 0.1.3 增加引入资源功能
+
 + 2020-08-10
 
-0.1.1 渲染模板添加 `$parameters` 参数
+    * 0.1.1 渲染模板添加 `$parameters` 参数

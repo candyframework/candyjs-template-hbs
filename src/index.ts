@@ -35,6 +35,16 @@ export default class Index extends View {
      */
     public contentHtml: string = '';
 
+    /**
+     * @property {Array} headAssets Head 部分资源
+     */
+    public headAssets: string[] = null;
+
+    /**
+     * @property {Array} footerAssets Footer 部分资源
+     */
+    public footerAssets: string[] = null;
+
     public handlebars: typeof Handlebars = Handlebars.create();
 
     constructor(context: any) {
@@ -42,13 +52,60 @@ export default class Index extends View {
     }
 
     /**
+     * 获取 head 部分资源
+     *
+     * @return {String}
+     */
+    public getHeadAssets = (): string => {
+        return null === this.headAssets ? '' : this.headAssets.join('\n');
+    }
+
+    /**
+     * 添加 head 部分资源
+     *
+     * @param {String} asset 资源
+     */
+    public addHeadAsset = (asset: string): void => {
+        if(null === this.headAssets) {
+            this.headAssets = [];
+        }
+
+        this.headAssets.push(asset);
+    }
+
+    /**
+     * 获取 footer 部分资源
+     *
+     * @return {String}
+     */
+    public getFooterAssets = (): string => {
+        return null === this.footerAssets ? '' : this.footerAssets.join('\n');
+    }
+
+    /**
+     * 添加 footer 部分资源
+     *
+     * @param {String} asset 资源
+     */
+    public addFooterAsset = (asset: string): void => {
+        if(null === this.footerAssets) {
+            this.footerAssets = [];
+        }
+
+        this.footerAssets.push(asset);
+    }
+
+    /**
      * 渲染文件
      */
-    async renderFile(file: string, parameters: any) {
+    public async renderFile(file: string, parameters: any) {
         let viewData = await fs.promises.readFile(file, {encoding: Candy.app.encoding});
         let compiled = this.handlebars.compile(viewData);
 
-        this.contentHtml = compiled(parameters);
+        this.contentHtml = compiled({
+            $this: this,
+            ...parameters
+        });
 
         if(this.enableLayout) {
             let layoutFile = Candy.getPathAlias(this.layout + this.defaultExtension);
@@ -56,7 +113,8 @@ export default class Index extends View {
 
             compiled = this.handlebars.compile(layoutData);
             this.contentHtml = compiled({
-                $parameters: parameters,
+                $this: this,
+                parameters: parameters,
                 title: this.title,
                 description: this.description,
                 contentHtml: this.contentHtml

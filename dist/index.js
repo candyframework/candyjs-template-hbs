@@ -30,7 +30,53 @@ class Index extends View {
          * @property {String} contentHtml 内容 html
          */
         this.contentHtml = '';
+        /**
+         * @property {Array} headAssets Head 部分资源
+         */
+        this.headAssets = null;
+        /**
+         * @property {Array} footerAssets Footer 部分资源
+         */
+        this.footerAssets = null;
         this.handlebars = Handlebars.create();
+        /**
+         * 获取 head 部分资源
+         *
+         * @return {String}
+         */
+        this.getHeadAssets = () => {
+            return null === this.headAssets ? '' : this.headAssets.join('\n');
+        };
+        /**
+         * 添加 head 部分资源
+         *
+         * @param {String} asset 资源
+         */
+        this.addHeadAsset = (asset) => {
+            if (null === this.headAssets) {
+                this.headAssets = [];
+            }
+            this.headAssets.push(asset);
+        };
+        /**
+         * 获取 footer 部分资源
+         *
+         * @return {String}
+         */
+        this.getFooterAssets = () => {
+            return null === this.footerAssets ? '' : this.footerAssets.join('\n');
+        };
+        /**
+         * 添加 footer 部分资源
+         *
+         * @param {String} asset 资源
+         */
+        this.addFooterAsset = (asset) => {
+            if (null === this.footerAssets) {
+                this.footerAssets = [];
+            }
+            this.footerAssets.push(asset);
+        };
     }
     /**
      * 渲染文件
@@ -38,13 +84,14 @@ class Index extends View {
     async renderFile(file, parameters) {
         let viewData = await fs.promises.readFile(file, { encoding: Candy.app.encoding });
         let compiled = this.handlebars.compile(viewData);
-        this.contentHtml = compiled(parameters);
+        this.contentHtml = compiled(Object.assign({ $this: this }, parameters));
         if (this.enableLayout) {
             let layoutFile = Candy.getPathAlias(this.layout + this.defaultExtension);
             let layoutData = await fs.promises.readFile(layoutFile, { encoding: Candy.app.encoding });
             compiled = this.handlebars.compile(layoutData);
             this.contentHtml = compiled({
-                $parameters: parameters,
+                $this: this,
+                parameters: parameters,
                 title: this.title,
                 description: this.description,
                 contentHtml: this.contentHtml
