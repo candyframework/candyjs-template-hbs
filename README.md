@@ -1,16 +1,18 @@
-### candyjs 模板引擎
+## candyjs 模板引擎
 
-此库是基于 Handlebars 的模板引擎，旨在方便 candyjs 进行模板渲染，目前该库功能比较简单，后期逐步增加功能
+此模板引擎基于 Handlebars 开发，旨在为 candyjs 提供强大的模板处理功能
 
-### 使用
+## 使用
 
-使用前需要先安装本插件
+#### 安装
 
 ```
 npm install @candyjs/template-hbs
 ```
 
-+ 直接使用
+#### 直接使用
+
+使用模板引擎的方式很多，具体参考 candyjs 的文档，这里介绍其中一种：全局配置方式
 
 ```
 // 入口文件 index.js
@@ -20,14 +22,14 @@ var App = require('candyjs/web/Application');
 
 // 由于 candyjs 的模板采用别名路径
 // 默认别名路径并不包含 node_modules 所以这里添加一下 方便引入模板引擎
-Candy.setPathAlias('@n_m', __dirname + '/node_modules');
+Candy.setPathAlias('@template', __dirname + '/node_modules');
 
 new CandyJs(new App({
     'id': 1,
     'debug': true,
     'appPath': __dirname + '/app',
-    // 指定使用的模板引擎
-    'defaultView': 'n_m/@candyjs/template-hbs/index'
+    // 使用别名路径指定使用的模板引擎
+    'defaultView': 'template/@candyjs/template-hbs/index'
 
 })).listen(2333, function(){
     console.log('listen on 2333');
@@ -61,9 +63,9 @@ module.exports = class IndexController extends Controller {
 </html>
 ```
 
-+ 基于布局文件使用
+#### 布局文件的使用
 
-大部分时候我们的网站页面布局都很相似，比如头部导航，底部 footer ，这部分比较固定，所以我们可以利用布局文件将这部分逻辑抽离出来
+大部分时候网站布局都有一部分保持不变的结构，比如头部导航，底部 footer ，这部分比较固定，可以利用布局文件将这部分逻辑进行抽离，避免重复布局
 
 使用布局文件很简单，只需要编写一个布局文件并修改控制器部分即可
 
@@ -108,10 +110,9 @@ module.exports = class IndexController extends Controller {
 <div>{{ age }}</div>
 ```
 
-+ 须知
+#### 布局文件补充
 
-由上面代码可见，布局文件默认放到了 app/views 目录中，并起名 layout.html ，
-这只是系统的默认配置，可以通过修改类的 layout 属性来改变布局文件的名称及位置
+由上面代码可见，布局文件默认放到了 app/views 目录中，并起名 layout.html ，但这只是系统的默认配置，可以通过修改类的 layout 属性来改变布局文件的名称及位置
 
 ```
 module.exports = class IndexController extends Controller {
@@ -130,21 +131,21 @@ module.exports = class IndexController extends Controller {
 }
 ```
 
-+ 向 head 部分添加资源
+#### 向 head 部分添加资源
 
-有时候项目需要引入一个外部 js 并且这个 js 需要在页面加载时候就引入，这时候可以使用该 API 实现
+有时候项目需要引入一个外部 javascript 文件，并且这个 javascript 文件需要在页面加载时先运行，模板引擎针对这种情况提供了向 html 的 head 部分追加内容的功能
 
 下面在模板文件中调用 `addHeadAsset()` 函数，实现添加头部资源。布局文件中调用 `getHeadAssets()` 实现了输出资源到页面
 
 ```
-// 模板片段文件
-{{ $this.addHeadAsset '<link href="aaa">' }}
+// 模板片段文件注册了一个样式文件
+{{ $this.addHeadAsset '<link href="outer.css">' }}
 
 <div>other html content</div>
 ```
 
 ```
-// 布局文件
+// 布局文件使用 getHeadAssets() 输出了所有注册的资源
 <!doctype html>
 <html>
 <head>
@@ -157,7 +158,7 @@ module.exports = class IndexController extends Controller {
 </html>
 ```
 
-### CHANGELOG
+#### CHANGELOG
 
 + 2020-09-15
 
