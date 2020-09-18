@@ -158,6 +158,29 @@ module.exports = class IndexController extends Controller {
 </html>
 ```
 
+#### 处理输出
+
+从 `candyjs 4.5.4`, `@candyjs/template-hbs 0.1.4` 开始支持返回模板处理结果，使用 `output` 参数控制是否直接输出或者返回模板渲染结果
+
+```
+module.exports = class IndexController extends Controller {
+    run(req, res) {
+        this.getView().title = 'layout demo';
+        this.getView().enableLayout = true;
+
+        // set output parameter
+        this.getView().output = false;
+
+        this.render('index', {
+            age: 20
+        }).then((data) => {
+            // todo
+            res.end(data);
+        });
+    }
+}
+```
+
 #### CHANGELOG
 
 + 2020-09-15

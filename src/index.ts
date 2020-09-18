@@ -11,6 +11,12 @@ import * as Handlebars from 'handlebars';
 export default class Index extends View {
 
     /**
+     * @property {Boolean} output 是否直接输出
+     * @since 0.1.4
+     */
+    public output: boolean = true;
+
+    /**
      * @property {Boolean} enableLayout 是否开启布局视图
      */
     public enableLayout: boolean = false;
@@ -54,6 +60,7 @@ export default class Index extends View {
     /**
      * 获取 head 部分资源
      *
+     * @since 0.1.3
      * @return {String}
      */
     public getHeadAssets = (): string => {
@@ -63,6 +70,7 @@ export default class Index extends View {
     /**
      * 添加 head 部分资源
      *
+     * @since 0.1.3
      * @param {String} asset 资源
      */
     public addHeadAsset = (asset: string): void => {
@@ -76,6 +84,7 @@ export default class Index extends View {
     /**
      * 获取 footer 部分资源
      *
+     * @since 0.1.3
      * @return {String}
      */
     public getFooterAssets = (): string => {
@@ -85,6 +94,7 @@ export default class Index extends View {
     /**
      * 添加 footer 部分资源
      *
+     * @since 0.1.3
      * @param {String} asset 资源
      */
     public addFooterAsset = (asset: string): void => {
@@ -121,7 +131,11 @@ export default class Index extends View {
             });
         }
 
-        this.context.response.end( this.contentHtml );
+        if(!this.output) {
+            return this.contentHtml;
+        }
+
+        return this.context.response.end( this.contentHtml );
     }
 
 }

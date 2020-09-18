@@ -11,6 +11,11 @@ class Index extends View {
     constructor(context) {
         super(context);
         /**
+         * @property {Boolean} output 是否直接输出
+         * @since 0.1.4
+         */
+        this.output = true;
+        /**
          * @property {Boolean} enableLayout 是否开启布局视图
          */
         this.enableLayout = false;
@@ -42,6 +47,7 @@ class Index extends View {
         /**
          * 获取 head 部分资源
          *
+         * @since 0.1.3
          * @return {String}
          */
         this.getHeadAssets = () => {
@@ -50,6 +56,7 @@ class Index extends View {
         /**
          * 添加 head 部分资源
          *
+         * @since 0.1.3
          * @param {String} asset 资源
          */
         this.addHeadAsset = (asset) => {
@@ -61,6 +68,7 @@ class Index extends View {
         /**
          * 获取 footer 部分资源
          *
+         * @since 0.1.3
          * @return {String}
          */
         this.getFooterAssets = () => {
@@ -69,6 +77,7 @@ class Index extends View {
         /**
          * 添加 footer 部分资源
          *
+         * @since 0.1.3
          * @param {String} asset 资源
          */
         this.addFooterAsset = (asset) => {
@@ -97,7 +106,10 @@ class Index extends View {
                 contentHtml: this.contentHtml
             });
         }
-        this.context.response.end(this.contentHtml);
+        if (!this.output) {
+            return this.contentHtml;
+        }
+        return this.context.response.end(this.contentHtml);
     }
 }
 exports.default = Index;
