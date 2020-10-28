@@ -181,7 +181,7 @@ module.exports = class IndexController extends Controller {
 }
 ```
 
-#### CHANGELOG
+## CHANGELOG
 
 + 2020-09-15
 
