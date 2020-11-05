@@ -1,6 +1,6 @@
 {
   "name": "@candyjs/template-hbs",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "hbs template",
   "main": "index.js",
   "scripts": {

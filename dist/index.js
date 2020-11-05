@@ -28,6 +28,10 @@ class Index extends View {
          */
         this.title = '';
         /**
+         * @property {String} keywords 页面关键字
+         */
+        this.keywords = '';
+        /**
          * @property {String} description 页面描述
          */
         this.description = '';

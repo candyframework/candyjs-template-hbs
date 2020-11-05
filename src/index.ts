@@ -32,6 +32,11 @@ export default class Index extends View {
     public title: string = '';
 
     /**
+     * @property {String} keywords 页面关键字
+     */
+    public keywords: string = '';
+
+    /**
      * @property {String} description 页面描述
      */
     public description: string = '';
