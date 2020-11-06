@@ -91,7 +91,7 @@ module.exports = class IndexController extends Controller {
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
+    <title>{{ $this.title }}</title>
 </head>
 <body>
     <nav>layout page header</nav>
@@ -182,6 +182,10 @@ module.exports = class IndexController extends Controller {
 ```
 
 ## CHANGELOG
+
++ 2020-09-15
+
+    * 0.1.5 优化布局文件参数 去除 title 和 description
 
 + 2020-09-15
 

@@ -105,8 +105,6 @@ class Index extends View {
             this.contentHtml = compiled({
                 $this: this,
                 parameters: parameters,
-                title: this.title,
-                description: this.description,
                 contentHtml: this.contentHtml
             });
         }
