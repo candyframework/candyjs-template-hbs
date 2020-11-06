@@ -109,9 +109,10 @@ class Index extends View {
             });
         }
         if (!this.output) {
-            return this.contentHtml;
+            return Promise.resolve(this.contentHtml);
         }
-        return this.context.response.end(this.contentHtml);
+        this.context.response.end(this.contentHtml);
+        return Promise.resolve(undefined);
     }
 }
 exports.default = Index;
