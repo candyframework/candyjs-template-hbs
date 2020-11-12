@@ -183,6 +183,10 @@ module.exports = class IndexController extends Controller {
 
 ## CHANGELOG
 
++ 2020-11-12
+
+    * 0.1.7 布局文件路径去除 @ 符号，由 '@app/views/layout' 修改为 'app/views/layout'
+
 + 2020-09-15
 
     * 0.1.5 优化布局文件参数 去除 title 和 description
