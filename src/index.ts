@@ -24,7 +24,7 @@ export default class Index extends View {
     /**
      * @property {String} layout 布局文件路径
      */
-    public layout: string = '@app/views/layout';
+    public layout: string = 'app/views/layout';
 
     /**
      * @property {String} title 页面标题
@@ -123,7 +123,7 @@ export default class Index extends View {
         });
 
         if(this.enableLayout) {
-            let layoutFile = Candy.getPathAlias(this.layout + this.defaultExtension);
+            let layoutFile = Candy.getPathAlias('@' + this.layout + this.defaultExtension);
             let layoutData = await fs.promises.readFile(layoutFile, {encoding: Candy.app.encoding});
 
             compiled = this.handlebars.compile(layoutData);

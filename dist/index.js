@@ -22,7 +22,7 @@ class Index extends View {
         /**
          * @property {String} layout 布局文件路径
          */
-        this.layout = '@app/views/layout';
+        this.layout = 'app/views/layout';
         /**
          * @property {String} title 页面标题
          */
@@ -99,7 +99,7 @@ class Index extends View {
         let compiled = this.handlebars.compile(viewData);
         this.contentHtml = compiled(Object.assign({ $this: this }, parameters));
         if (this.enableLayout) {
-            let layoutFile = Candy.getPathAlias(this.layout + this.defaultExtension);
+            let layoutFile = Candy.getPathAlias('@' + this.layout + this.defaultExtension);
             let layoutData = await fs.promises.readFile(layoutFile, { encoding: Candy.app.encoding });
             compiled = this.handlebars.compile(layoutData);
             this.contentHtml = compiled({

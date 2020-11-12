@@ -120,9 +120,9 @@ module.exports = class IndexController extends Controller {
         this.getView().title = 'layout demo';
         this.getView().enableLayout = true;
 
-        // 这里将默认布局文件修改为 app/layout/default.html
-        // 路径支持绝对路径以及别名路径
-        this.getView().layout = '@app/layout/default';
+        // 这里的 'app' 是一个系统别名
+        // 表示将默认布局文件修改为 app/layout/default.html
+        this.getView().layout = 'app/layout/default';
 
         this.render('index', {
             age: 20
