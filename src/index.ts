@@ -134,12 +134,12 @@ export default class Index extends View {
             });
         }
 
-        if(!this.output) {
-            return Promise.resolve(this.contentHtml);
+        if(this.output) {
+            this.context.response.end(this.contentHtml);
+            return Promise.resolve(undefined);
         }
 
-        this.context.response.end(this.contentHtml);
-        return Promise.resolve(undefined);
+        return Promise.resolve(this.contentHtml);
     }
 
 }
