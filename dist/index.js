@@ -111,7 +111,7 @@ class Index extends View {
         if (this.output) {
             this.context.response.write(this.contentHtml);
             this.context.response.end();
-            return Promise.resolve(undefined);
+            this.contentHtml = '';
         }
         return Promise.resolve(this.contentHtml);
     }
