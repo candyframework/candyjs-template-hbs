@@ -2,6 +2,12 @@
 
 此模板引擎基于 Handlebars 开发，旨在为 candyjs 提供强大的模板处理功能
 
+## 编译
+
+```
+./node_modules/.bin/tsc
+```
+
 ## 使用
 
 #### 安装
