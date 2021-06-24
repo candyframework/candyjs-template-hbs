@@ -113,7 +113,7 @@ export default class Index extends View {
     /**
      * 渲染文件
      */
-    public async renderFile(file: string, parameters: any): Promise<any> {
+    public async renderFile(file: string, parameters: any): Promise<string> {
         let viewData = await fs.promises.readFile(file, {encoding: Candy.app.encoding});
         let compiled = this.handlebars.compile(viewData);
 
