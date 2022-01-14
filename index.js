@@ -1,3 +1,3 @@
-const View = require('./dist/index');
+const View = require('./src/index');
 
 module.exports = View.default;

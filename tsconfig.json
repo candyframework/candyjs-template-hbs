@@ -5,7 +5,6 @@
         "preserveConstEnums": true,
         "moduleResolution": "node",
         "sourceMap": false,
-        "outDir": "./dist",
         "baseUrl": ".",
         "allowSyntheticDefaultImports": true,
         "skipLibCheck": true
