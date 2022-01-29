@@ -20,12 +20,28 @@ class Index extends View {
      * 渲染文件
      */
     async renderFile(file, parameters) {
-        let viewData = await fs.promises.readFile(file, { encoding: Candy.app.encoding });
+        let viewData = '';
+        try {
+            viewData = await fs.promises.readFile(file, { encoding: Candy.app.encoding });
+        }
+        catch (e) {
+            if (Candy.app.debug) {
+                viewData = e.message;
+            }
+        }
         let compiled = this.handlebars.compile(viewData);
         this.contentHtml = compiled(Object.assign({ $this: this }, parameters));
         if (this.enableLayout) {
             let layoutFile = Candy.getPathAlias('@' + this.layout + this.defaultExtension);
-            let layoutData = await fs.promises.readFile(layoutFile, { encoding: Candy.app.encoding });
+            let layoutData = '';
+            try {
+                layoutData = await fs.promises.readFile(layoutFile, { encoding: Candy.app.encoding });
+            }
+            catch (e) {
+                if (Candy.app.debug) {
+                    layoutData = e.message;
+                }
+            }
             compiled = this.handlebars.compile(layoutData);
             this.contentHtml = compiled({
                 $this: this,
