@@ -1,6 +1,6 @@
 {
   "name": "@candyjs/template-hbs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "hbs template",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   ],
   "author": "candyjs",
   "license": "MIT",
-  "homepage": "https://github.com/douyu-beijing/candyjs-template-hbs",
+  "homepage": "https://github.com/candyframework/candyjs-template-hbs",
   "dependencies": {
     "handlebars": "^4.7.6"
   },
