@@ -54,7 +54,7 @@ class Index extends View {
             this.context.response.end();
             this.contentHtml = '';
         }
-        return Promise.resolve(this.contentHtml);
+        return this.contentHtml;
     }
 }
 exports.default = Index;

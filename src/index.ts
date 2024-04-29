@@ -70,7 +70,7 @@ export default class Index extends View {
             this.contentHtml = '';
         }
 
-        return Promise.resolve(this.contentHtml);
+        return this.contentHtml;
     }
 
 }
